@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>GetAllSheets</Title>
+			<Shortcut>gas</Shortcut>
+			<Description>Gets a collection of the sheet names in the workbook.</Description>
+		</Header>
+		<Snippet>
+			<Code Language="CSharp">
+				<![CDATA[Sheets? theSheets = null;
+
+                using (SpreadsheetDocument? document = 
+                    SpreadsheetDocument.Open($FilePath$, false))
+                {
+                    WorkbookPart? wbPart = document.WorkbookPart;
+                    theSheets = wbPart?.Workbook.Sheets;
+                }]]>
+			</Code>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Spreadsheet</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>FilePath</ID>
+					<ToolTip>Enter the file path of the workbook document or a string variable containing the path.</ToolTip>
+					<Default>@"c:\temp\myworkbook.xlsx"</Default>
+				</Literal>
+			</Declarations>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
