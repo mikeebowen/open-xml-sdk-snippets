@@ -5,34 +5,39 @@
 			<Title>Create Word Document</Title>
 			<Shortcut>docx</Shortcut>
 			<Description>Creates a Word document and add a run of text</Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
 		</Header>
 		<Snippet>
 			<Declarations>
 				<Literal>
-					<ID>RunText</ID>
-					<ToolTip>The text to include in the run</ToolTip>
-					<Default>Hello World</Default>
+					<ID>FilePath</ID>
+					<ToolTip>Enter the file path of the workbook document or a string variable containing the path.</ToolTip>
+					<Default>@"C:\temp\mydocument.docx"</Default>
 				</Literal>
 				<Literal>
-					<ID>Filepath</ID>
-					<ToolTip>The path to where to create the docx file</ToolTip>
-					<Default>@"C:\path\to\file"</Default>
+					<ID>RunText</ID>
+					<ToolTip>The text to include in the run</ToolTip>
+					<Default>"Hello World"</Default>
 				</Literal>
 			</Declarations>
 			<Code Language="CSharp">
 				<![CDATA[
-    // Create a document by supplying the filepath.
-    using WordprocessingDocument wordDocument = WordprocessingDocument.Create($Filepath$, WordprocessingDocumentType.Document);
 
-    // Add a main document part.
-    MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+// Create a document by supplying the filepath.
+using (WordprocessingDocument wordDocument = WordprocessingDocument.Create($FilePath$, WordprocessingDocumentType.Document))
+{
+	// Add a main document part.
+	MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
 
-    // Create the document structure and add some text.
-    mainPart.Document = new Document();
-    Body body = mainPart.Document.AppendChild(new Body());
-    Paragraph para = body.AppendChild(new Paragraph());
-    Run run = para.AppendChild(new Run());
-    run.AppendChild(new Text("$RunText$"));
+	// Create the document structure and add some text.
+	mainPart.Document = new Document();
+	Body body = mainPart.Document.AppendChild(new Body());
+	Paragraph para = body.AppendChild(new Paragraph());
+	Run run = para.AppendChild(new Run());
+	run.AppendChild(new Text($RunText$));
+}
 ]]>
 			</Code>
 			<Imports>

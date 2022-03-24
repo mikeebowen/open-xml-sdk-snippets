@@ -1,29 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
-    <<<<<<< HEAD:OpenXmlSdkSnippets/OpenXmlSdkSnippets.snippet
 	<CodeSnippet Format="1.0.0">
-        <Header>
-            <Title>Create PowerPoint Presentation</Title>
-            <Description>Creates a PowerPoint presentation file</Description>
-            <Shortcut>pptx</Shortcut>
-            <SnippetTypes>
-                <SnippetType>Expansion</SnippetType>
-            </SnippetTypes>
-        </Header>
-        <Snippet>
-            <Code Language="CSharp">
-                <![CDATA[
-=======
-    <CodeSnippet Format="1.0.0">
-        <Header>
-            <Title>Create PowerPoint Presentation</Title>
-            <Description>Creates a PowerPoint presentation file</Description>
-            <Shortcut>pptx</Shortcut>
-        </Header>
-        <Snippet>
-            <Code Language="CSharp">
-                <![CDATA[
->>>>>>> parent of e79ba55 (move snippets into a single file):CreatePresentation/CreatePresentaionSnippet.snippet
+		<Header>
+			<Title>Create PowerPoint Presentation</Title>
+			<Description>Creates a PowerPoint presentation file</Description>
+			<Shortcut>pptx</Shortcut>
+		</Header>
+		<Snippet>
+			<Code Language="CSharp">
+				<![CDATA[
 public static PresentationDocument CreatePresentation(string filepath)
 {
     // Create a presentation at a specified file path. The presentation document type is pptx, by default.
@@ -303,30 +288,30 @@ private static ThemePart _createTheme(SlideMasterPart slideMasterPart1)
     return themePart1;
 }
 ]]>
-            </Code>
-            <Imports>
-                <Import>
-                    <Namespace>DocumentFormat.OpenXml</Namespace>
-                </Import>
-                <Import>
-                    <Namespace>DocumentFormat.OpenXml.Drawing</Namespace>
-                </Import>
-                <Import>
-                    <Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
-                </Import>
-                <Import>
-                    <Namespace>DocumentFormat.OpenXml.Presentation</Namespace>
-                </Import>
-                <Import>
-                    <Namespace>D = DocumentFormat.OpenXml.Drawing</Namespace>
-                </Import>
-                <Import>
-                    <Namespace>P = DocumentFormat.OpenXml.Presentation</Namespace>
-                </Import>
-                <Import>
-                    <Namespace>AParagraph = DocumentFormat.OpenXml.Drawing.Paragraph</Namespace>
-                </Import>
-            </Imports>
-        </Snippet>
-    </CodeSnippet>
+			</Code>
+			<Imports>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Drawing</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Presentation</Namespace>
+				</Import>
+				<Import>
+					<Namespace>D = DocumentFormat.OpenXml.Drawing</Namespace>
+				</Import>
+				<Import>
+					<Namespace>P = DocumentFormat.OpenXml.Presentation</Namespace>
+				</Import>
+				<Import>
+					<Namespace>AParagraph = DocumentFormat.OpenXml.Drawing.Paragraph</Namespace>
+				</Import>
+			</Imports>
+		</Snippet>
+	</CodeSnippet>
 </CodeSnippets>
