@@ -66,7 +66,7 @@ private static SlidePart _createSlidePart(PresentationPart presentationPart)
                         new P.TextBody(
                             new BodyProperties(),
                             new ListStyle(),
-                            new Paragraph(new EndParagraphRunProperties() { Language = "en-US" }))))),
+                            new AParagraph(new EndParagraphRunProperties() { Language = "en-US" }))))),
             new ColorMapOverride(new MasterColorMapping()));
     return slidePart1;
 }
@@ -90,7 +90,7 @@ private static SlideLayoutPart _createSlideLayoutPart(SlidePart slidePart1)
         new P.TextBody(
         new BodyProperties(),
         new ListStyle(),
-        new Paragraph(new EndParagraphRunProperties()))))),
+        new AParagraph(new EndParagraphRunProperties()))))),
     new ColorMapOverride(new MasterColorMapping()));
     slideLayoutPart1.SlideLayout = slideLayout;
     return slideLayoutPart1;
@@ -115,7 +115,7 @@ private static SlideMasterPart _createSlideMasterPart(SlideLayoutPart slideLayou
         new P.TextBody(
         new BodyProperties(),
         new ListStyle(),
-        new Paragraph())))),
+        new AParagraph())))),
     new P.ColorMap() { Background1 = D.ColorSchemeIndexValues.Light1, Text1 = D.ColorSchemeIndexValues.Dark1, Background2 = D.ColorSchemeIndexValues.Light2, Text2 = D.ColorSchemeIndexValues.Dark2, Accent1 = D.ColorSchemeIndexValues.Accent1, Accent2 = D.ColorSchemeIndexValues.Accent2, Accent3 = D.ColorSchemeIndexValues.Accent3, Accent4 = D.ColorSchemeIndexValues.Accent4, Accent5 = D.ColorSchemeIndexValues.Accent5, Accent6 = D.ColorSchemeIndexValues.Accent6, Hyperlink = D.ColorSchemeIndexValues.Hyperlink, FollowedHyperlink = D.ColorSchemeIndexValues.FollowedHyperlink },
     new SlideLayoutIdList(new SlideLayoutId() { Id = (UInt32Value)2147483649U, RelationshipId = "rId1" }),
     new TextStyles(new TitleStyle(), new BodyStyle(), new OtherStyle()));
@@ -309,7 +309,7 @@ private static ThemePart _createTheme(SlideMasterPart slideMasterPart1)
 					<Namespace>P = DocumentFormat.OpenXml.Presentation</Namespace>
 				</Import>
 				<Import>
-					<Namespace>Paragraph = DocumentFormat.OpenXml.Wordprocessing.Paragraph</Namespace>
+					<Namespace>AParagraph = DocumentFormat.OpenXml.Drawing.Paragraph</Namespace>
 				</Import>
 			</Imports>
 		</Snippet>
