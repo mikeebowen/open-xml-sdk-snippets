@@ -5,6 +5,9 @@
 			<Title>Create PowerPoint Presentation</Title>
 			<Description>Creates a PowerPoint presentation file</Description>
 			<Shortcut>pptx</Shortcut>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
 		</Header>
 		<Snippet>
 			<Code Language="CSharp">
@@ -318,6 +321,9 @@ private static ThemePart _createTheme(SlideMasterPart slideMasterPart1)
 			<Title>Create Word Document</Title>
 			<Shortcut>docx</Shortcut>
 			<Description>Creates a Word document and add a run of text</Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
 		</Header>
 		<Snippet>
 			<Declarations>
@@ -329,7 +335,7 @@ private static ThemePart _createTheme(SlideMasterPart slideMasterPart1)
 				<Literal>
 					<ID>Filepath</ID>
 					<ToolTip>The path to where to create the docx file</ToolTip>
-					<Default>FilePath</Default>
+					<Default>@"c:\temp\mydocument.docx</Default>
 				</Literal>
 			</Declarations>
 			<Code Language="CSharp">
@@ -372,6 +378,9 @@ private static ThemePart _createTheme(SlideMasterPart slideMasterPart1)
 			<Title>GetAllSheets</Title>
 			<Shortcut>gas</Shortcut>
 			<Description>Gets a collection of the sheet names in the workbook.</Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
 		</Header>
 		<Snippet>
 			<Code Language="CSharp">
