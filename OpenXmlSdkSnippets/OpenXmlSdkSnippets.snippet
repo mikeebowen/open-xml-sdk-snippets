@@ -413,4 +413,55 @@ private static ThemePart _createTheme(SlideMasterPart slideMasterPart1)
 			</Declarations>
 		</Snippet>
 	</CodeSnippet>
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Create Spreadsheet</Title>
+			<Shortcut>xlsx</Shortcut>
+			<Description>Creates a Spreadsheet with one sheet</Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Code Language="CSharp">
+				<![CDATA[
+        SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create($FilePath$, SpreadsheetDocumentType.Workbook);
+
+        WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+        workbookpart.Workbook = new Workbook();
+
+        WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+        worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+        Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+
+        Sheet sheet = new Sheet() { Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "$SheetName$" };
+        sheets.Append(sheet);
+				]]>
+			</Code>
+			<Imports>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Spreadsheet</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>FilePath</ID>
+					<ToolTip>Enter the file path of the workbook document or a string variable containing the path.</ToolTip>
+					<Default>@"c:\temp\myworkbook.xlsx"</Default>
+				</Literal>
+				<Literal>
+					<ID>SheetName</ID>
+					<ToolTip>Enter the name for the sheet</ToolTip>
+					<Default>MySheet</Default>
+				</Literal>
+			</Declarations>
+		</Snippet>
+	</CodeSnippet>
 </CodeSnippets>
