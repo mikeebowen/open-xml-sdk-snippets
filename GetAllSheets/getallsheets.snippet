@@ -4,17 +4,17 @@
 		<Header>
 			<Title>GetAllSheets</Title>
 			<Shortcut>gas</Shortcut>
-			<Description>Gets a collection of the sheetnames in the workbook.</Description>
+			<Description>Gets a collection of the sheet names in the workbook.</Description>
 		</Header>
 		<Snippet>
 			<Code Language="CSharp">
-				<![CDATA[Sheets theSheets = null;
+				<![CDATA[Sheets? theSheets = null;
 
-                using (SpreadsheetDocument document = 
+                using (SpreadsheetDocument? document = 
                     SpreadsheetDocument.Open($FilePath$, false))
                 {
-                    WorkbookPart wbPart = document.WorkbookPart;
-                    theSheets = wbPart.Workbook.Sheets;
+                    WorkbookPart? wbPart = document.WorkbookPart;
+                    theSheets = wbPart?.Workbook.Sheets;
                 }]]>
 			</Code>
 			<Imports>
