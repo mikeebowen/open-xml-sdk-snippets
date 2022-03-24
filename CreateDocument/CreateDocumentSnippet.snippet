@@ -4,15 +4,25 @@
 		<Header>
 			<Title>Create Word Document</Title>
 			<Shortcut>docx</Shortcut>
-			<Description>Creates a Word document</Description>
+			<Description>Creates a Word document and add a run of text</Description>
 		</Header>
 		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>RunText</ID>
+					<ToolTip>The text to include in the run</ToolTip>
+					<Default>Hello World</Default>
+				</Literal>
+				<Literal>
+					<ID>Filepath</ID>
+					<ToolTip>The path to where to create the docx file</ToolTip>
+					<Default>@"C:\path\to\file"</Default>
+				</Literal>
+			</Declarations>
 			<Code Language="CSharp">
 				<![CDATA[
-public static WordprocessingDocument CreateWordprocessingDocument(string filepath)
-{
     // Create a document by supplying the filepath.
-    using WordprocessingDocument wordDocument = WordprocessingDocument.Create(filepath, WordprocessingDocumentType.Document);
+    using WordprocessingDocument wordDocument = WordprocessingDocument.Create($Filepath$, WordprocessingDocumentType.Document);
 
     // Add a main document part.
     MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
@@ -22,10 +32,7 @@ public static WordprocessingDocument CreateWordprocessingDocument(string filepat
     Body body = mainPart.Document.AppendChild(new Body());
     Paragraph para = body.AppendChild(new Paragraph());
     Run run = para.AppendChild(new Run());
-    run.AppendChild(new Text("Create text in body - CreateWordprocessingDocument"));
-
-    return wordDocument;
-}
+    run.AppendChild(new Text("$RunText$"));
 ]]>
 			</Code>
 			<Imports>
