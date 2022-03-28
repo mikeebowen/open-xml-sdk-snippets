@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Create Workbook</Title>
+			<Shortcut>xlsx</Shortcut>
+			<Description>Create a Workbook Document with a Worksheet</Description>
+		</Header>
+		<Snippet>
+			<Code Language="CSharp">
+				<![CDATA[// Create a workbook document by supplying the file path.
+        // By default, AutoSave = true, Editable = true, and Type = xlsx.
+        SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create($FilePath$, SpreadsheetDocumentType.Workbook);
+
+        // Add a WorkbookPart to the document.
+        WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+        workbookpart.Workbook = new Workbook();
+
+        // Add a WorksheetPart to the WorkbookPart.
+        WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+        worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+        // Add Sheets to the Workbook.
+        Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.
+            AppendChild<Sheets>(new Sheets());
+
+        // Append a new worksheet and associate it with the workbook.
+        Sheet sheet = new Sheet() { Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = $SheetName$ };
+        sheets.Append(sheet);]]>
+			</Code>
+			<Imports>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+				</Import>
+				<Import>
+					<Namespace>DocumentFormat.OpenXml.Spreadsheet</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>FilePath</ID>
+					<ToolTip>Path to save the workbook or a string variable containing the path.</ToolTip>
+					<Default>@"c:\temp\myworkbook.xlsx"</Default>
+				</Literal>
+				<Literal>
+					<ID>SheetName</ID>
+					<Default>"Sheet1"</Default>
+					<ToolTip>The name for the sheet</ToolTip>
+				</Literal>
+			</Declarations>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
