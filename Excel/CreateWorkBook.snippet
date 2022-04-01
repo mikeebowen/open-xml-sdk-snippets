@@ -8,7 +8,8 @@
 		</Header>
 		<Snippet>
 			<Code Language="CSharp">
-				<![CDATA[// Create a workbook document by supplying the file path.
+				<![CDATA[
+		// Create a workbook document by supplying the file path.
         // By default, AutoSave = true, Editable = true, and Type = xlsx.
         SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create($FilePath$, SpreadsheetDocumentType.Workbook);
 
@@ -21,12 +22,15 @@
         worksheetPart.Worksheet = new Worksheet(new SheetData());
 
         // Add Sheets to the Workbook.
-        Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.
-            AppendChild<Sheets>(new Sheets());
+        Sheets? sheets = spreadsheetDocument?.WorkbookPart?.Workbook.AppendChild<Sheets>(new Sheets());
 
         // Append a new worksheet and associate it with the workbook.
-        Sheet sheet = new Sheet() { Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = $SheetName$ };
-        sheets.Append(sheet);]]>
+        Sheet? sheet = new Sheet() { Id = spreadsheetDocument?.WorkbookPart?.GetIdOfPart(worksheetPart), SheetId = 1, Name = $SheetName$ };
+
+        if (sheets != null && sheet != null)
+        {
+            sheets.Append(sheet);
+        }]]>
 			</Code>
 			<Imports>
 				<Import>

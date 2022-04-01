@@ -9,7 +9,7 @@
 		<Snippet>
 			<Code Language="CSharp">
 				<![CDATA[
-				// REQUIRED: Add Open XML SDK PowerPoint Utils item. Right the project in solution explorer | Add | New Item... | 
+				// REQUIRED: Add Open XML SDK PowerPoint Utils item. Right the project in solution explorer | Add | New Item... | Open XML SDK PowerPoint Utils
 				PresentationDocument presentationDocument = PowerPointUtils.CreatePresentation($FilePath$);
 				// TODO: manipulate the presentation
             presentationDocument.Save();
@@ -20,7 +20,7 @@
 					<Namespace>OpenXmlSdkUtils</Namespace>
 				</Import>
 				<Import>
-					<Namespace>DocumentFormat.OpenXml.Presentation</Namespace>
+					<Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
 				</Import>
 			</Imports>
 			<Declarations>

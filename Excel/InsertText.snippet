@@ -9,20 +9,12 @@
 		<Snippet>
 			<Code Language="CSharp">
 				<![CDATA[
-				// REQUIRED: Add Open XML SDK Excel Utils item. Right click the project in solution explorer | Add | New Item... | 
-				SpreadsheetDocument spreadsheetDocument = SpreadSheetUtils.InsertText($SpreadSheetDocument$, $Content$, $Row$, $Column$);
+				// REQUIRED: Add Open XML SDK Excel Utils item. Right click the project in solution explorer | Add | New Item... | Open XML SDK Excel Utils
+				SpreadsheetDocument spreadsheetDocument = ExcelUtils.InsertText($SpreadSheetDocument$, $Content$, $Row$, $Column$);
 				// TODO: manipulate the spreadsheet
             spreadsheetDocument.Save();
             spreadsheetDocument.Close();]]>
 			</Code>
-			<Imports>
-				<Import>
-					<Namespace>OpenXmlSdkUtils</Namespace>
-				</Import>
-				<Import>
-					<Namespace>DocumentFormat.OpenXml.Presentation</Namespace>
-				</Import>
-			</Imports>
 			<Declarations>
 				<Literal>
 					<ID>SpreadSheetDocument</ID>
@@ -47,10 +39,10 @@
 			</Declarations>
 			<Imports>
 				<Import>
-					<Namespace>DocumentFormat.OpenXml</Namespace>
+					<Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
 				</Import>
 				<Import>
-					<Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+					<Namespace>OpenXmlSdkUtils</Namespace>
 				</Import>
 			</Imports>
 		</Snippet>
