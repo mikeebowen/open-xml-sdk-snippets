@@ -68,7 +68,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="PowerPoint\CreatePresentaionSnippet.snippet">
+    <Content Include="PowerPoint\CreatePresentationSnippet.snippet">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
