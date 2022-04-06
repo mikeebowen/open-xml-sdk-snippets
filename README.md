@@ -19,7 +19,7 @@
 
 ## Usage
 
-This extension consists of 2 parts: snippets that can be inserted directly in code and item templates with utility methods to work on Office Open XML files with the Open Xml SDK.
+This extension consists of 2 parts: snippets that can be inserted directly in code and item templates with utility methods to facilitate working on Office Open XML files with the Open Xml SDK.
 
 The item templates are added by right-clicking the project in Solution Explorer | Add | New Item... | Open XML SDK \<PowerPoint | Excel\> Utils. The item templates contain code that is too large to fit in a snippet, but could be useful to developers. Some of the snippets use the item templates, but the utility methods can be used directly without the snippets.
 
