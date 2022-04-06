@@ -4,7 +4,7 @@
 		<Header>
 			<Title>Create Workbook</Title>
 			<Shortcut>Excel_CreateSpreadsheet</Shortcut>
-			<Description>Create a Workbook Document with a Worksheet</Description>
+			<Description>Create a workbook document with a worksheet.</Description>
 		</Header>
 		<Snippet>
 			<Code Language="CSharp">
@@ -21,7 +21,7 @@
         WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
         worksheetPart.Worksheet = new Worksheet(new SheetData());
 
-        // Add Sheets to the Workbook.
+        // Add Sheets to the workbook.
         Sheets? sheets = spreadsheetDocument?.WorkbookPart?.Workbook.AppendChild<Sheets>(new Sheets());
 
         // Append a new worksheet and associate it with the workbook.
@@ -52,7 +52,7 @@
 				<Literal>
 					<ID>SheetName</ID>
 					<Default>"Sheet1"</Default>
-					<ToolTip>The name for the sheet</ToolTip>
+					<ToolTip>The name for the sheet.</ToolTip>
 				</Literal>
 			</Declarations>
 		</Snippet>
