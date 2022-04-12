@@ -84,11 +84,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="ItemTemplates\Open Xml SDK PowerPoint Utils.zip">
+    <Content Include="ItemTemplates\Open XML SDK Excel Utils.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="ItemTemplates\Open Xml SDK Excel Utils.zip">
+    <Content Include="ItemTemplates\Open XML SDK PowerPoint Utils.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

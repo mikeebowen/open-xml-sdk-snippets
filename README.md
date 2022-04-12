@@ -1,4 +1,6 @@
-﻿# Open Xml SDK Snippets and Item Templates
+﻿# Open XML SDK Snippets and Item Templates
+
+A collection of snippets for creation and manipulation of Open XML documents, spreadsheets and presentations.
 
 - [Usage](#usage)
 - [Snippets](#snippets)
@@ -12,20 +14,20 @@
     - [Word](#word)
         - [Word_CreateDocument](#word_createdocument)
 - [Item Templates](#item-templates)
-    - [Open Xml SDK Utils](#open-xml-sdk-utils)
-    - [Open Xml SDK PowerPoint Utils](#open-xml-sdk-powerpoint-utils)
+    - [Open XML SDK Utils](#open-xml-sdk-utils)
+    - [Open XML SDK PowerPoint Utils](#open-xml-sdk-powerpoint-utils)
 
 ---
 
 ## Usage
 
-This extension consists of 2 parts: snippets that can be inserted directly in code and item templates with utility methods to facilitate working on Office Open XML files with the Open Xml SDK.
+This extension consists of 2 parts: snippets that can be inserted directly in code and item templates with utility methods to facilitate working on Office Open XML files with the Open XML SDK.
 
 The item templates are added by right-clicking the project in Solution Explorer | Add | New Item... | Open XML SDK \<PowerPoint | Excel\> Utils. The item templates contain code that is too large to fit in a snippet, but could be useful to developers. Some of the snippets use the item templates, but the utility methods can be used directly without the snippets.
 
-Snippets are added to intellisense, to use them begin typing the name of the snippet you want to insert and you will see a list of available snippets. Some of the snippets rely on your project containing an instance of the utility methods. If a snippet requires utility methods, it is noted in comments in the snippet.
+Snippets are added to Intellisense, to use them begin typing the name of the snippet you want to insert and you will see a list of available snippets. Some of the snippets rely on your project containing an instance of the utility methods. If a snippet requires utility methods, it is noted in comments in the snippet.
 
-*The snippets and the item templates both require the [Open Xml SDK](https://www.nuget.org/packages/DocumentFormat.OpenXml/) be installed from nuget.*
+*The snippets and the item templates both require the [Open XML SDK](https://www.nuget.org/packages/DocumentFormat.OpenXml/) be installed from nuget.*
 
 ## Snippets
 ### Excel
@@ -133,24 +135,19 @@ using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(${1},
 
 ## Item Templates
 
-### Open Xml SDK Utils
+### Open XML SDK Utils
 
 ```csharp
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenXmlSdkUtils
 {
     public class ExcelUtils
     {
         // Given a document name and text,
-        // inserts a new work sheet and writes the text to cell of the new worksheet.
+        // inserts a new worksheet and writes the text into a cell of the new worksheet.
 
         public static SpreadsheetDocument InsertText(SpreadsheetDocument spreadSheet, string text, string columnName, uint rowIndex, WorksheetPart? wsp)
         {
@@ -251,7 +248,7 @@ namespace OpenXmlSdkUtils
         // Given a WorkbookPart, inserts a new worksheet.
         public static WorksheetPart InsertWorksheet(WorkbookPart workbookPart)
         {
-            // Add a new worksheet part to the workbook.
+            // Add a new WorksheetPart to the workbook.
             WorksheetPart newWorksheetPart = workbookPart.AddNewPart<WorksheetPart>();
             newWorksheetPart.Worksheet = new Worksheet(new SheetData());
             newWorksheetPart.Worksheet.Save();
@@ -328,7 +325,7 @@ namespace OpenXmlSdkUtils
                     sheetData.Append(row);
                 }
 
-                // If there is not a cell with the specified column name, insert one.
+                // If a cell with the specified column name doesn’t exist, insert one.
                 if (row.Elements<Cell>().Where(c => !string.IsNullOrEmpty(c.CellReference) && c.CellReference.Value == columnName + rowIndex).Count() > 0)
                 {
                     return row.Elements<Cell>().Where(c => !string.IsNullOrEmpty(c.CellReference) && c.CellReference.Value == cellReference).First();
@@ -382,7 +379,7 @@ namespace OpenXmlSdkUtils
 }
 ```
 
-### Open Xml SDK PowerPoint Utils
+### Open XML SDK PowerPoint Utils
 
 ```csharp
 using DocumentFormat.OpenXml;
@@ -399,7 +396,7 @@ namespace OpenXmlSdkUtils
     {
         public static PresentationDocument CreatePresentation(string filepath)
         {
-            // Create a presentation at a specified file path. The presentation document type is pptx, by default.
+            // Create a presentation at a specified file path. The presentation document type is pptx by default.
             PresentationDocument presentationDoc = PresentationDocument.Create(filepath, PresentationDocumentType.Presentation);
             PresentationPart presentationPart = presentationDoc.AddPresentationPart();
             presentationPart.Presentation = new Presentation();
