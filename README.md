@@ -25,7 +25,7 @@ This extension consists of 2 parts: snippets that can be inserted directly in co
 
 The item templates are added by right-clicking the project in Solution Explorer | Add | New Item... | Open XML SDK \<PowerPoint | Excel\> Utils. The item templates contain code that is too large to fit in a snippet, but could be useful to developers. Some of the snippets use the item templates, but the utility methods can be used directly without the snippets.
 
-Snippets are added to Intellisense, to use them begin typing the name of the snippet you want to insert and you will see a list of available snippets. Some of the snippets rely on your project containing an instance of the utility methods. If a snippet requires utility methods, it is noted in comments in the snippet.
+Snippets are added to IntelliSense, to use them begin typing the name of the snippet you want to insert and you will see a list of available snippets. Some of the snippets rely on your project containing an instance of the utility methods. If a snippet requires utility methods, it is noted in comments in the snippet.
 
 *The snippets and the item templates both require the [Open XML SDK](https://www.nuget.org/packages/DocumentFormat.OpenXml/) be installed from nuget.*
 
@@ -670,3 +670,10 @@ namespace OpenXmlSdkUtils
     }
 }
 ```
+
+## Release Notes
+
+Please see the [Changelog](CHANGELOG.md)
+
+---
+<p align="right">Logo created with <a href="https://logomakr.com/">LogoMakr.com</a></p>
