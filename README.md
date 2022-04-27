@@ -670,3 +670,10 @@ namespace OpenXmlSdkUtils
     }
 }
 ```
+
+## Release Notes
+
+Please see the [Changelog](CHANGELOG.md)
+
+---
+<p align="right">Logo created with <a href="https://logomakr.com/">LogoMakr.com</a></p>
