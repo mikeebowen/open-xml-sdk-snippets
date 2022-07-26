@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Create Workbook</Title>
+      <Shortcut>Excel_CreateSpreadsheet</Shortcut>
+      <Description>Create a workbook document with a worksheet.</Description>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+		// Create a workbook document by supplying the file path.
+        // By default, AutoSave = true, Editable = true, and Type = xlsx.
+        SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create($FilePath$, SpreadsheetDocumentType.Workbook);
+
+        // Add a WorkbookPart to the document.
+        WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+        workbookpart.Workbook = new Workbook();
+
+        // Add a WorksheetPart to the WorkbookPart.
+        WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+        worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+        // Add Sheets to the workbook.
+        Sheets? sheets = spreadsheetDocument?.WorkbookPart?.Workbook.AppendChild<Sheets>(new Sheets());
+
+        // Append a new worksheet and associate it with the workbook.
+        Sheet? sheet = new Sheet() { Id = spreadsheetDocument?.WorkbookPart?.GetIdOfPart(worksheetPart), SheetId = 1, Name = $SheetName$ };
+
+        if (sheets != null && sheet != null)
+        {
+            sheets.Append(sheet);
+        }]]>
+      </Code>
+      <Imports>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Spreadsheet</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>FilePath</ID>
+          <ToolTip>Path to save the workbook or a string variable containing the path.</ToolTip>
+          <Default>@"c:\temp\myworkbook.xlsx"</Default>
+        </Literal>
+        <Literal>
+          <ID>SheetName</ID>
+          <Default>"Sheet1"</Default>
+          <ToolTip>The name for the sheet.</ToolTip>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Get All Sheets</Title>
+      <Shortcut>Excel_GetAllSheets </Shortcut>
+      <Description>Get a collection of the sheet names in a workbook.</Description>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[Sheets? theSheets = null;
+
+                using (SpreadsheetDocument? document = 
+                    SpreadsheetDocument.Open($FilePath$, false))
+                {
+                    WorkbookPart? wbPart = document.WorkbookPart;
+                    theSheets = wbPart?.Workbook.Sheets;
+                }]]>
+      </Code>
+      <Imports>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Spreadsheet</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>FilePath</ID>
+          <ToolTip>Enter the file path of the workbook document or a string variable containing the path.</ToolTip>
+          <Default>@"c:\temp\myworkbook.xlsx"</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Get Sheet</Title>
+      <Shortcut>Excel_GetSheet</Shortcut>
+      <Description>Get a sheet from an xlsx file by name.</Description>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+Sheet? sheet = null;
+
+using (SpreadsheetDocument? document = SpreadsheetDocument.Open($FilePath$, true))
+{
+    IEnumerable<Sheet>? sheets = document?.WorkbookPart?.Workbook.Descendants<Sheet>().Where(s => s.Name == $SheetName$);
+
+    if (sheets != null && sheets.Count() > 0)
+    {
+        sheet = sheets.FirstOrDefault();
+    }
+}
+				]]>
+      </Code>
+      <Imports>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Spreadsheet</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>SheetName</ID>
+          <Default>"Sheet1"</Default>
+          <ToolTip>The name for the sheet.</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>FilePath</ID>
+          <ToolTip>Path to save the workbook or a string variable containing the path.</ToolTip>
+          <Default>@"c:\temp\myworkbook.xlsx"</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Text into Cell</Title>
+      <Description>Add a sheet and insert text into a cell of a SpreadsheetDocument</Description>
+      <Shortcut>Excel_InsertTextIntoCell</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+				// REQUIRED: Add Open XML SDK Excel Utils item. Right-click the project in Solution Explorer | Add | New Item... | Open XML SDK Excel Utils
+				SpreadsheetDocument spreadsheetDocument = ExcelUtils.InsertText($SpreadSheetDocument$, $Content$, $Row$, $Column$);
+				// TODO: manipulate the spreadsheet
+            spreadsheetDocument.Save();
+            spreadsheetDocument.Close();]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>SpreadSheetDocument</ID>
+          <ToolTip>Variable referencing the SpreadsheetDocument.</ToolTip>
+          <Default>spreadSheet</Default>
+        </Literal>
+        <Literal>
+          <ID>Content</ID>
+          <ToolTip>Text to insert in cell.</ToolTip>
+          <Default>"Hello World"</Default>
+        </Literal>
+        <Literal>
+          <ID>Row</ID>
+          <ToolTip>The row to insert into.</ToolTip>
+          <Default>"A"</Default>
+        </Literal>
+        <Literal>
+          <ID>Column</ID>
+          <ToolTip>The column to insert into.</ToolTip>
+          <Default>1</Default>
+        </Literal>
+      </Declarations>
+      <Imports>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+        </Import>
+        <Import>
+          <Namespace>OpenXmlSdkUtils</Namespace>
+        </Import>
+      </Imports>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Validate an Excel Spreadsheet document</Title>
+      <Shortcut>Excel_ValidateDocument</Shortcut>
+      <Description>Validate an Excel Spreadsheet document.</Description>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FilePath</ID>
+          <ToolTip>Path to read the workbook or a string variable containing the path.</ToolTip>
+          <Default>@"c:\temp\myworkbook.xlsx"</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+// Validate a document by supplying the filepath.
+using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open($FilePath$, true))
+{                  
+    try
+    {           
+        OpenXmlValidator validator = new OpenXmlValidator();
+        int count = 0;
+        foreach (ValidationErrorInfo error in
+            validator.Validate(spreadsheetDocument))
+        {
+            count++;
+            Console.WriteLine("Error " + count);
+            Console.WriteLine("Description: " + error.Description);
+            Console.WriteLine("ErrorType: " + error.ErrorType);
+            Console.WriteLine("Node: " + error?.Node ?? "unavailable");
+            Console.WriteLine("Path: " + error?.Path?.XPath ?? "unavailable");
+            Console.WriteLine("Part: " + error?.Part?.Uri ?? "unavailable");
+            Console.WriteLine("-------------------------------------------");
+        }
+
+        Console.WriteLine("count={0}", count);
+        }
+        
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);              
+    }
+
+    spreadsheetDocument.Close();
+}
+]]>
+      </Code>
+      <Imports>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Packaging</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Spreadsheet</Namespace>
+        </Import>
+        <Import>
+          <Namespace>DocumentFormat.OpenXml.Validation</Namespace>
+        </Import>
+      </Imports>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
